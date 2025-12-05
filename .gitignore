@@ -39,3 +39,27 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+.editorconfig
+
+# OS Metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Local Config and Secrets
+config.local.*
+secrets.*
+*.local
