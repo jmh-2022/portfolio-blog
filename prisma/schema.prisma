@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js" // Trigger redeploy2
+  provider = "prisma-client-js" // Trigger redeploy3
 }
 
 datasource db {
