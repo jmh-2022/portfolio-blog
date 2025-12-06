@@ -14,5 +14,5 @@ jobs:
     - name: Install dependencies # 3. 패키지 설치
       run: npm install
       
-    - name: Run test command (테스트용) # 4. CI가 정상 작동하는지 확인하는 테스트 명령어
+    - name: Run test command (테스트용) # 4. CI가 정상 작동하는지 확인하는 테스트 명령어 //
       run: echo "CI/CD가 서버 PC에서 성공적으로 실행되었습니다!"
