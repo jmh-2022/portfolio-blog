@@ -12,6 +12,9 @@ jobs:
     steps:
     - name: Checkout repository # 1. GitHub 코드를 서버로 복사(Pull)합니다.
       uses: actions/checkout@v4
+
+    - name: Copy .env from Secrets Directory # 1.5 .env 파일 복사 (프로젝트별 관리)
+      run: cp /home/j10005/secrets/blog/.env ./.env || echo "secrets/blog/.env 파일이 없습니다."
       
     - name: Setup Node.js (예시) # 2. 필요한 환경을 설정합니다. (Next.js 프로젝트라면 Node.js 설치)
       uses: actions/setup-node@v3
