@@ -20,6 +20,15 @@ jobs:
         
     - name: Install dependencies # 3. 패키지 설치
       run: npm install
+
+    - name: Generate Prisma Client # 4. Prisma 클라이언트 생성 (DB 스키마 반영)
+      run: npx prisma generate
+
+    - name: Build Next.js app # 5. Next.js 빌드
+      run: npm run build
       
-    - name: Run test command (테스트용) # 4. CI가 정상 작동하는지 확인하는 테스트 명령어
-      run: echo "CI/CD가 서버 PC에서 성공적으로 실행되었습니다!"
+    - name: Deploy with PM2 # 6. PM2로 무중단 배포/재시작
+      run: |
+        npm install -g pm2
+        pm2 start ecosystem.config.js || pm2 reload ecosystem.config.js --update-env
+        pm2 save
