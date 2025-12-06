@@ -1,0 +1,18 @@
+jobs:
+  build:
+    runs-on: self-hosted # 방금 등록한 러너의 기본 레이블
+    
+    steps:
+    - name: Checkout repository # 1. GitHub 코드를 서버로 복사(Pull)합니다.
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js (예시) # 2. 필요한 환경을 설정합니다. (Next.js 프로젝트라면 Node.js 설치)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' # 원하는 Node.js 버전 지정
+        
+    - name: Install dependencies # 3. 패키지 설치
+      run: npm install
+      
+    - name: Run test command (테스트용) # 4. CI가 정상 작동하는지 확인하는 테스트 명령어
+      run: echo "CI/CD가 서버 PC에서 성공적으로 실행되었습니다!"
