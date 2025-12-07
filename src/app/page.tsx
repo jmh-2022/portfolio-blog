@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowRight, Github, Mail } from "lucide-react"
 import { getRecentPosts } from "@/lib/data"
 import { TypographyH1, TypographyLead, TypographyH3 } from "@/components/ui/typography"
-import CardColumn from '@/components/shared/card-column';
+
 
 export default async function Home() {
   const recentPosts = await getRecentPosts('BLOG', 3);
@@ -41,7 +41,7 @@ export default async function Home() {
               <Link href="https://github.com/jmh-2022" target="_blank" className="hover:text-primary transition-colors">
                 <Github className="h-5 w-5" />
               </Link>
-              <Link href="mailto:yjm76540@gmail.com" className="hover:text-primary transition-colors">
+              <Link href="mailto:jmh3360@kakao.com" className="hover:text-primary transition-colors">
                 <Mail className="h-5 w-5" />
               </Link>
             </div>
