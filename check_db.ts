@@ -1,14 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Pool } from 'pg';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const connectionString = process.env.DATABASE_URL;
-const pool = new Pool({ connectionString });
-const adapter = new PrismaPg(pool);
-const prisma = new PrismaClient({ adapter });
+import 'dotenv/config';
+import { prisma } from './src/lib/prisma';
 
 async function main() {
     const posts = await prisma.post.findMany();
