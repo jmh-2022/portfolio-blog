@@ -19,9 +19,37 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const { slug } = await params;
     const project = await getProject(slug);
     if (!project) return { title: 'Project Not Found' };
+
+    const description = project.content.substring(0, 160).replace(/<[^>]*>?/gm, '');
+    const defaultImage = '/images/og-default.png';
+    const ogImage = project.coverImage || defaultImage;
+
     return {
         title: project.title,
-        description: project.content.substring(0, 160),
+        description: description,
+        alternates: {
+            canonical: `https://10005.kr/portfolio/${project.slug}`,
+        },
+        openGraph: {
+            title: project.title,
+            description: description,
+            type: 'article', // or 'website' / 'profile' depending on content, but article/website is common
+            url: `https://10005.kr/portfolio/${project.slug}`,
+            images: [
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: project.title,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: project.title,
+            description: description,
+            images: [ogImage],
+        },
     };
 }
 
@@ -43,8 +71,27 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         notFound();
     }
 
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork', // or 'SoftwareApplication' / 'WebSite' depending on portfolio type
+        headline: project.title,
+        datePublished: project.createdAt.toISOString(),
+        dateModified: project.updatedAt.toISOString(),
+        description: project.content.substring(0, 160).replace(/<[^>]*>?/gm, ''),
+        image: project.coverImage ? [project.coverImage] : [],
+        url: `https://10005.kr/portfolio/${project.slug}`,
+        author: {
+            '@type': 'Person',
+            name: 'JMH',
+        },
+    };
+
     return (
         <div className="container mx-auto py-10 max-w-4xl">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <article className="prose dark:prose-invert max-w-none">
                 <div className="mb-8">
                     <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
