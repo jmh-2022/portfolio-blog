@@ -1,16 +1,10 @@
 'use server';
 
-import { PrismaClient, PostType } from '@prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Pool } from 'pg';
+import { prisma } from '@/lib/prisma';
+import { PostType } from './generated/prisma/client';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { auth } from '@/auth';
-
-const connectionString = process.env.DATABASE_URL;
-const pool = new Pool({ connectionString });
-const adapter = new PrismaPg(pool);
-const prisma = new PrismaClient({ adapter });
 
 export async function createPost(formData: FormData) {
     const session = await auth();

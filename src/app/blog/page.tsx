@@ -1,13 +1,6 @@
 import Link from 'next/link';
-import { PrismaClient } from '@prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Pool } from 'pg';
+import { prisma } from '@/lib/prisma';
 import CardColumn from '@/components/shared/card-column';
-
-const connectionString = process.env.DATABASE_URL;
-const pool = new Pool({ connectionString });
-const adapter = new PrismaPg(pool);
-const prisma = new PrismaClient({ adapter });
 
 export const revalidate = 60; // Revalidate every 60 seconds
 

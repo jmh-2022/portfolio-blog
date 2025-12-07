@@ -1,13 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Pool } from 'pg';
+import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-
-const connectionString = process.env.DATABASE_URL;
-const pool = new Pool({ connectionString });
-const adapter = new PrismaPg(pool);
-const prisma = new PrismaClient({ adapter });
 
 export const revalidate = 60;
 
