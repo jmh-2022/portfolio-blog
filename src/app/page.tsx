@@ -9,14 +9,14 @@ export default async function Home() {
   const recentProjects = await getRecentPosts('PORTFOLIO', 4);
 
   return (
-    <div className="flex flex-col h-[calc(100vh-3.5rem)] overflow-hidden text-[#212529] dark:text-[#E0E0E0]">
-      {/* Top Area: Split 50:50 */}
+    <div className="flex flex-col min-h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-3.5rem)] lg:overflow-hidden text-[#212529] dark:text-[#E0E0E0]">
+      {/* Top Area: Split 50:50 on Desktop, Stacked on Mobile */}
       <div className="flex-1 flex flex-col lg:flex-row min-h-0">
 
-        {/* Left: Intro (Area 1: Main - White / Very Dark Gray) */}
-        <section className="flex-1 flex flex-col justify-center items-center p-8 lg:p-12 bg-[#FFFFFF] dark:bg-[#121212] text-center">
+        {/* Left: Intro (Area 1: Main) */}
+        <section className="flex-none lg:flex-1 flex flex-col justify-center items-center py-16 px-6 lg:p-12 bg-[#FFFFFF] dark:bg-[#121212] text-center border-b lg:border-b-0 lg:border-r border-border/10">
           <div className="max-w-xl mx-auto space-y-6 flex flex-col items-center">
-            <TypographyH1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#212529] dark:text-[#E0E0E0]">
+            <TypographyH1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#212529] dark:text-[#E0E0E0]">
               <span className="text-[#6C757D] dark:text-[#A0A0A0] block text-xl md:text-2xl mb-2 font-medium">안녕하세요, 흑만두의 개인블로그입니다.</span>
 
 
@@ -48,8 +48,8 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Right: Projects (Area 2: Middle - Ghost White / Dark Gray) */}
-        <section className="flex-1 p-6 lg:p-8 bg-[#F8F9FA] dark:bg-[#1E1E1E] flex flex-col min-h-0">
+        {/* Right: Projects (Area 2: Middle) */}
+        <section className="flex-none lg:flex-1 p-6 lg:p-8 bg-[#F8F9FA] dark:bg-[#1E1E1E] flex flex-col min-h-[500px] lg:min-h-0">
           <div className="flex items-center justify-between mb-4 shrink-0">
             <h2 className="text-lg font-bold tracking-tight text-[#212529] dark:text-[#E0E0E0]">Recent Projects</h2>
             <Link href="/portfolio" className="text-xs font-medium text-[#6C757D] dark:text-[#A0A0A0] hover:text-primary flex items-center gap-1">
@@ -57,9 +57,9 @@ export default async function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 flex-1 min-h-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 min-h-0">
             {recentProjects.map((project) => (
-              <Link key={project.id} href={`/portfolio/${project.slug}`} className="group relative block h-full overflow-hidden rounded-xl bg-muted/20 border border-border/50">
+              <Link key={project.id} href={`/portfolio/${project.slug}`} className="group relative block h-[200px] sm:h-full overflow-hidden rounded-xl bg-muted/20 border border-border/50">
                 {project.coverImage ? (
                   <img
                     src={project.coverImage}
@@ -78,8 +78,8 @@ export default async function Home() {
         </section>
       </div>
 
-      {/* Bottom: Blog Posts (Area 3: Light Gray / Medium Gray) */}
-      <section className="h-[25vh] min-h-[180px] bg-[#E9ECEF] dark:bg-[#2C2C2C] p-6 lg:p-8 flex flex-col">
+      {/* Bottom: Blog Posts (Area 3: Bottom) */}
+      <section className="flex-none h-auto lg:h-[25vh] lg:min-h-[180px] bg-[#E9ECEF] dark:bg-[#2C2C2C] p-6 lg:p-8 flex flex-col">
         <div className="flex items-center justify-between mb-4 shrink-0">
           <h2 className="text-lg font-bold tracking-tight text-[#212529] dark:text-[#E0E0E0]">Latest from Blog</h2>
           <Link href="/blog" className="text-xs font-medium text-[#6C757D] dark:text-[#A0A0A0] hover:text-primary flex items-center gap-1">

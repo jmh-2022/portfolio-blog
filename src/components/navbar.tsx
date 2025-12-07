@@ -69,7 +69,7 @@ export function Navbar({ session }: { session: Session | null }) {
 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                    <div className="absolute top-16 left-0 w-full border-b bg-background/95 backdrop-blur-md md:hidden shadow-lg animate-in slide-in-from-top-5">
+                    <div className="absolute top-16 left-0 w-full border-b border-t bg-white dark:bg-black animate-in slide-in-from-top-5">
                         <div className="container mx-auto px-4 py-6 flex flex-col gap-6">
                             <Link
                                 href="/portfolio"
